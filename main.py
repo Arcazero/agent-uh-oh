@@ -11,6 +11,10 @@ import os
 
 WORD = "Buffering"
 
+# The gate requires 1-99 UTF-8 characters, not only whitespace, and a
+# single word. Validate before writing so a bad word can never ship.
+assert 1 <= len(WORD) <= 99 and WORD.strip() == WORD and " " not in WORD
+
 
 def main() -> None:
     os.makedirs("/output", exist_ok=True)
